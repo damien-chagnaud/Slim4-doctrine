@@ -1,1 +1,3 @@
-# Slim4-doctrine
+# Slim Framework 4 / Doctrine
+
+
