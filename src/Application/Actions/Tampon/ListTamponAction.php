@@ -6,7 +6,7 @@ namespace App\Application\Actions\Tampon;
 
 use Psr\Http\Message\ResponseInterface as Response;
 
-class ListTamponsAction extends TamponAction
+class ListTamponAction extends TamponAction
 {
     /**
      * {@inheritdoc}

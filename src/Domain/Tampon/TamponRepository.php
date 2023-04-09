@@ -11,7 +11,12 @@ interface TamponRepository
      */
     public function findAll(): array;
 
-    //public function add(Tampon $tampon): void;
+    /**
+     * @throws TamponNotFoundException
+     */
+    public function findTamponOfId(int $id): Tampon;
+
+    public function add(Tampon $tampon): void;
 
 
 }

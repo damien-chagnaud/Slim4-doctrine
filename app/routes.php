@@ -6,7 +6,8 @@ declare(strict_types=1);
 use App\Application\Actions\User\ListUsersAction;
 use App\Application\Actions\User\ViewUserAction;
 #Tampons:
-use App\Application\Actions\Tampon\ListTamponsAction;
+use App\Application\Actions\Tampon\ListTamponAction;
+use App\Application\Actions\Tampon\ViewTamponAction;
 
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
@@ -30,8 +31,8 @@ return function (App $app) {
     });
 
     $app->group('/tampons', function (Group $group) {
-        $group->get('', ListTamponsAction::class);
-       // $group->get('/{id}', ViewUserAction::class);
+        $group->get('', ListTamponAction::class);
+        $group->get('/{id}', ViewTamponAction::class);
     });
 
 };

@@ -13,7 +13,7 @@ return function (ContainerBuilder $containerBuilder) {
     $containerBuilder->addDefinitions([
         SettingsInterface::class => function () {
             return new Settings([
-                'displayErrorDetails' => true, // Should be set to false in production
+                'displayErrorDetails' => ($_ENV['APP_DEV']=="dev")?true:false, // Should be set to false in production
                 'logError'            => false,
                 'logErrorDetails'     => false,
                 'logger' => [
@@ -25,8 +25,8 @@ return function (ContainerBuilder $containerBuilder) {
                     'proxy_dir' => dirname(__DIR__) . '/var/doctrine_proxy',
                     'metadata_dir' => dirname(__DIR__) . '/config/entity_meta',
                     'cache_dir' => dirname(__DIR__) . '/var/doctrine',
-                    'database_url' => "mysql://slim:slim@localhost/slim?charset=utf8mb4",
-                    'app_dev' => true,
+                    'database_url' => $_ENV['DATABASE_URL'],
+                    'app_dev' => ($_ENV['APP_DEV']=="dev")?true:false,
                 ],
             ]);
         }

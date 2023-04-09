@@ -674,6 +674,15 @@
             'reference' => 'e2d1534420bd723d0ef5aec58a22c5fe60ce6f5e',
             'dev_requirement' => false,
         ),
+        'symfony/dotenv' => array(
+            'pretty_version' => 'v6.2.8',
+            'version' => '6.2.8.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../symfony/dotenv',
+            'aliases' => array(),
+            'reference' => '4481aa45be7a11d2335c1d5b5bbe2f0c6199b105',
+            'dev_requirement' => true,
+        ),
         'symfony/polyfill-ctype' => array(
             'pretty_version' => 'v1.27.0',
             'version' => '1.27.0.0',

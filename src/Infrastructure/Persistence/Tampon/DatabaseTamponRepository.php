@@ -31,11 +31,35 @@ class DatabaseTamponRepository implements TamponRepository
         return $this->repository->findAll();
     }
 
-   /* public function add(Tampon $tampon): void
+    /**
+     * {@inheritdoc}
+     */
+    public function findTamponOfId(int $id): Tampon
+    {
+        /** @var Tammpon $tampon */
+        $tampon = $this->repository->find((int) $id);
+
+        if ($tampon  === null) {
+            throw new TamponNotFoundException();
+        }
+
+        return $tampon ;
+    }
+
+    public function add(Tampon $tampon): void
     {
         $this->entity_manager->persist($tampon);
         $this->entity_manager->flush();
-    }*/
+    }
+
+    public function update(Tampon $tampon): void
+    {
+        $this->entity_manager->persist($tampon);
+        $this->entity_manager->flush();
+    }
+
+
+
 
 
 }

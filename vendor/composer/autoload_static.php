@@ -50,6 +50,7 @@ class ComposerStaticInit31c6c70c7ac9d077b2aec0bc20dda788
             'Symfony\\Contracts\\Cache\\' => 24,
             'Symfony\\Component\\VarExporter\\' => 30,
             'Symfony\\Component\\String\\' => 25,
+            'Symfony\\Component\\Dotenv\\' => 25,
             'Symfony\\Component\\Console\\' => 26,
             'Symfony\\Component\\Cache\\' => 24,
             'Slim\\Psr7\\' => 10,
@@ -169,6 +170,10 @@ class ComposerStaticInit31c6c70c7ac9d077b2aec0bc20dda788
         'Symfony\\Component\\String\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/string',
+        ),
+        'Symfony\\Component\\Dotenv\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/dotenv',
         ),
         'Symfony\\Component\\Console\\' => 
         array (
