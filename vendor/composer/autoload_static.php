@@ -21,7 +21,9 @@ class ComposerStaticInit31c6c70c7ac9d077b2aec0bc20dda788
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         '253c157292f75eb38082b5acb06f3f01' => __DIR__ . '/..' . '/nikic/fast-route/src/functions.php',
         '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
+        'a4ecaeafb8cfb009ad0e052c90355e98' => __DIR__ . '/..' . '/beberlei/assert/lib/Assert/functions.php',
         'b33e3d135e5d9e47d845c576147bda89' => __DIR__ . '/..' . '/php-di/php-di/src/functions.php',
+        '09f6b20656683369174dd6fa83b7e5fb' => __DIR__ . '/..' . '/symfony/polyfill-uuid/bootstrap.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -35,10 +37,13 @@ class ComposerStaticInit31c6c70c7ac9d077b2aec0bc20dda788
         ),
         'T' => 
         array (
+            'Tuupola\\Middleware\\' => 19,
+            'Tuupola\\Http\\Factory\\' => 21,
             'Tests\\' => 6,
         ),
         'S' => 
         array (
+            'Symfony\\Polyfill\\Uuid\\' => 22,
             'Symfony\\Polyfill\\Php80\\' => 23,
             'Symfony\\Polyfill\\Php73\\' => 23,
             'Symfony\\Polyfill\\Php72\\' => 23,
@@ -108,6 +113,7 @@ class ComposerStaticInit31c6c70c7ac9d077b2aec0bc20dda788
         ),
         'A' => 
         array (
+            'Assert\\' => 7,
             'App\\' => 4,
         ),
     );
@@ -123,9 +129,22 @@ class ComposerStaticInit31c6c70c7ac9d077b2aec0bc20dda788
         array (
             0 => __DIR__ . '/..' . '/webmozart/assert/src',
         ),
+        'Tuupola\\Middleware\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/tuupola/callable-handler/src',
+            1 => __DIR__ . '/..' . '/tuupola/slim-basic-auth/src',
+        ),
+        'Tuupola\\Http\\Factory\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/tuupola/http-factory/src',
+        ),
         'Tests\\' => 
         array (
             0 => __DIR__ . '/../..' . '/tests',
+        ),
+        'Symfony\\Polyfill\\Uuid\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-uuid',
         ),
         'Symfony\\Polyfill\\Php80\\' => 
         array (
@@ -309,6 +328,10 @@ class ComposerStaticInit31c6c70c7ac9d077b2aec0bc20dda788
         'DI\\' => 
         array (
             0 => __DIR__ . '/..' . '/php-di/php-di/src',
+        ),
+        'Assert\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/beberlei/assert/lib/Assert',
         ),
         'App\\' => 
         array (

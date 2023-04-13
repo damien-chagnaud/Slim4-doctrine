@@ -24,12 +24,15 @@
     "require": {
         "php": "^7.4 || ^8.0",
         "ext-json": "*",
+        "beberlei/assert": "^3.3",
         "doctrine/orm": "2.14.1",
         "monolog/monolog": "^2.8",
         "php-di/php-di": "^6.4",
         "slim/psr7": "^1.5",
         "slim/slim": "^4.10",
-        "symfony/cache": "^5.3"
+        "symfony/cache": "^5.3",
+        "symfony/polyfill-uuid": "^1.27",
+        "tuupola/slim-basic-auth": "^3.3"
     },
     "require-dev": {
         "jangregor/phpstan-prophecy": "^1.0.0",

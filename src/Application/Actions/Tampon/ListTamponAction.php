@@ -16,6 +16,7 @@ class ListTamponAction extends TamponAction
         $tampons = $this->tamponRepository->findAll();
 
         $this->logger->info("Tampon list was viewed.");
+    
 
         return $this->respondWithData($tampons);
     }

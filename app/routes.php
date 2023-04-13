@@ -8,6 +8,7 @@ use App\Application\Actions\User\ViewUserAction;
 #Tampons:
 use App\Application\Actions\Tampon\ListTamponAction;
 use App\Application\Actions\Tampon\ViewTamponAction;
+use App\Application\Actions\Tampon\NewTamponAction;
 
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
@@ -22,6 +23,7 @@ return function (App $app) {
 
     $app->get('/', function (Request $request, Response $response) {
         $response->getBody()->write('Hello world!');
+        $response->getBody()->write('</br>session:'. $request->getAttribute('session'));
         return $response;
     });
 
@@ -30,9 +32,21 @@ return function (App $app) {
         $group->get('/{id}', ViewUserAction::class);
     });
 
-    $app->group('/tampons', function (Group $group) {
-        $group->get('', ListTamponAction::class);
-        $group->get('/{id}', ViewTamponAction::class);
-    });
+    $app->get('/tampons', ListTamponAction::class);
+    
+    $app->group('/tampons/admin', function (Group $group) {
+        $group->get('', function (Request $request, Response $response) {$response->getBody()->write('Tampons admin pages');return $response;});
+        $group->post('/new', NewTamponAction::class);
+        $group->get('/delete', ListTamponAction::class);
+        $group->get('/stock', ListTamponAction::class);
+    })->add(new Tuupola\Middleware\HttpBasicAuthentication([
+        "secure" => true,
+        "relaxed" => ["localhost"],
+        "users" => [
+            "root" => "t00r",
+        ]
+    ]));;
+
+    
 
 };

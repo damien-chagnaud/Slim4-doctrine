@@ -1,15 +1,24 @@
 <?php return array(
     'root' => array(
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => NULL,
+        'reference' => '6be8b568204cc00aead5857104420a9bc42af244',
         'name' => 'slim/slim-skeleton',
         'dev' => true,
     ),
     'versions' => array(
+        'beberlei/assert' => array(
+            'pretty_version' => 'v3.3.2',
+            'version' => '3.3.2.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../beberlei/assert',
+            'aliases' => array(),
+            'reference' => 'cb70015c04be1baee6f5f5c953703347c0ac1655',
+            'dev_requirement' => false,
+        ),
         'doctrine/cache' => array(
             'pretty_version' => '2.2.0',
             'version' => '2.2.0.0',
@@ -386,6 +395,7 @@
             'dev_requirement' => false,
             'provided' => array(
                 0 => '1.0',
+                1 => '^1.0',
             ),
         ),
         'psr/http-message' => array(
@@ -615,12 +625,12 @@
             'dev_requirement' => false,
         ),
         'slim/slim-skeleton' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => NULL,
+            'reference' => '6be8b568204cc00aead5857104420a9bc42af244',
             'dev_requirement' => false,
         ),
         'squizlabs/php_codesniffer' => array(
@@ -746,6 +756,15 @@
             'reference' => '7a6ff3f1959bb01aefccb463a0f2cd3d3d2fd936',
             'dev_requirement' => false,
         ),
+        'symfony/polyfill-uuid' => array(
+            'pretty_version' => 'v1.27.0',
+            'version' => '1.27.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../symfony/polyfill-uuid',
+            'aliases' => array(),
+            'reference' => 'f3cf1a645c2734236ed1e2e671e273eeb3586166',
+            'dev_requirement' => false,
+        ),
         'symfony/service-contracts' => array(
             'pretty_version' => 'v2.5.2',
             'version' => '2.5.2.0',
@@ -781,6 +800,33 @@
             'aliases' => array(),
             'reference' => '34a41e998c2183e22995f158c581e7b5e755ab9e',
             'dev_requirement' => true,
+        ),
+        'tuupola/callable-handler' => array(
+            'pretty_version' => '1.1.0',
+            'version' => '1.1.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../tuupola/callable-handler',
+            'aliases' => array(),
+            'reference' => '0bc7b88630ca753de9aba8f411046856f5ca6f8c',
+            'dev_requirement' => false,
+        ),
+        'tuupola/http-factory' => array(
+            'pretty_version' => '1.4.0',
+            'version' => '1.4.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../tuupola/http-factory',
+            'aliases' => array(),
+            'reference' => 'ae3f8fbdd31cf2f1bbe920b38963c5e4d1e9c454',
+            'dev_requirement' => false,
+        ),
+        'tuupola/slim-basic-auth' => array(
+            'pretty_version' => '3.3.1',
+            'version' => '3.3.1.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../tuupola/slim-basic-auth',
+            'aliases' => array(),
+            'reference' => '18e49c18f5648b05bb6169d166ccb6f797f0fbc4',
+            'dev_requirement' => false,
         ),
         'webmozart/assert' => array(
             'pretty_version' => '1.11.0',
