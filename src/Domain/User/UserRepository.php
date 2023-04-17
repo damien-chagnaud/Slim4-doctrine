@@ -6,15 +6,11 @@ namespace App\Domain\User;
 
 interface UserRepository
 {
-    /**
-     * @return User[]
-     */
-    public function findAll(): array;
 
-    /**
-     * @param int $id
-     * @return User
+     /**
+     * @param ivoid
+     * @return string
      * @throws UserNotFoundException
      */
-    public function findUserOfId(int $id): User;
+    public function generateToken(string $username): string;
 }

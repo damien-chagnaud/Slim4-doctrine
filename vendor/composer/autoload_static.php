@@ -93,6 +93,7 @@ class ComposerStaticInit31c6c70c7ac9d077b2aec0bc20dda788
         ),
         'F' => 
         array (
+            'Firebase\\JWT\\' => 13,
             'Fig\\Http\\Message\\' => 17,
             'FastRoute\\' => 10,
         ),
@@ -271,6 +272,10 @@ class ComposerStaticInit31c6c70c7ac9d077b2aec0bc20dda788
         'Invoker\\' => 
         array (
             0 => __DIR__ . '/..' . '/php-di/invoker/src',
+        ),
+        'Firebase\\JWT\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/firebase/php-jwt/src',
         ),
         'Fig\\Http\\Message\\' => 
         array (

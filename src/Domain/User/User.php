@@ -8,23 +8,32 @@ use JsonSerializable;
 
 class User implements JsonSerializable
 {
-    private ?int $id;
+    private string $id;
 
     private string $username;
 
-    private string $firstName;
+    private string $password;
 
-    private string $lastName;
+    private string $firstname;
 
-    public function __construct(?int $id, string $username, string $firstName, string $lastName)
+    private string $lastname;
+
+    private string $email;
+
+    private string $uidkey;
+
+    public function __construct(string $id, string $username, string $password, string $firstname, string $lastname, string $email, string $uidkey)
     {
         $this->id = $id;
         $this->username = strtolower($username);
-        $this->firstName = ucfirst($firstName);
-        $this->lastName = ucfirst($lastName);
+        $this->password = $password;
+        $this->firstname = ucfirst($firstname);
+        $this->lastname = ucfirst($lastname);
+        $this->email = $email;
+        $this->uidkey = strtolower($uidkey);
     }
 
-    public function getId(): ?int
+    public function getId(): string
     {
         return $this->id;
     }
@@ -34,14 +43,34 @@ class User implements JsonSerializable
         return $this->username;
     }
 
-    public function getFirstName(): string
+    public function getPassword(): string
     {
-        return $this->firstName;
+        return $this->password;
     }
 
-    public function getLastName(): string
+    public function getFirstname(): string
     {
-        return $this->lastName;
+        return $this->firstname;
+    }
+
+    public function getLastname(): string
+    {
+        return $this->lastname;
+    }
+
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+
+    public function getUidkey(): string
+    {
+        return $this->uidkey;
+    }
+
+    public function setUidkey(string $uidkey): string
+    {
+        return $this->uidkey = $uidkey;
     }
 
     #[\ReturnTypeWillChange]
@@ -50,8 +79,11 @@ class User implements JsonSerializable
         return [
             'id' => $this->id,
             'username' => $this->username,
-            'firstName' => $this->firstName,
-            'lastName' => $this->lastName,
+            'password' => $this->password,
+            'firstname' => $this->firstname,
+            'lastname' => $this->lastname,
+            'email' => $this->email,
+            'uidkey' => $this->uidkey,
         ];
     }
 }

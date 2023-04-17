@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '6be8b568204cc00aead5857104420a9bc42af244',
+        'reference' => '7002fee4a88347eddb6d1e3e331a816dfb54241c',
         'name' => 'slim/slim-skeleton',
         'dev' => true,
     ),
@@ -125,6 +125,15 @@
             'install_path' => __DIR__ . '/../fig/http-message-util',
             'aliases' => array(),
             'reference' => '9d94dc0154230ac39e5bf89398b324a86f63f765',
+            'dev_requirement' => false,
+        ),
+        'firebase/php-jwt' => array(
+            'pretty_version' => 'v6.4.0',
+            'version' => '6.4.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../firebase/php-jwt',
+            'aliases' => array(),
+            'reference' => '4dd1e007f22a927ac77da5a3fbb067b42d3bc224',
             'dev_requirement' => false,
         ),
         'jangregor/phpstan-prophecy' => array(
@@ -630,7 +639,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '6be8b568204cc00aead5857104420a9bc42af244',
+            'reference' => '7002fee4a88347eddb6d1e3e331a816dfb54241c',
             'dev_requirement' => false,
         ),
         'squizlabs/php_codesniffer' => array(

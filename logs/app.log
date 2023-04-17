@@ -1,160 +1,31 @@
-[2023-04-13T01:23:17.517155+00:00] slim-app.INFO: User_Id: 71a57edd-92d2-4595-b82e-ca6adcb25427 [] {"uid":"0674033"}
-[2023-04-13T01:23:17.517364+00:00] slim-app.INFO: 71a57edd-92d2-4595-b82e-ca6adcb25427 [] {"uid":"0674033"}
-[2023-04-13T01:23:17.517510+00:00] slim-app.INFO: Create tampon [] {"uid":"0674033"}
-[2023-04-13T01:23:17.517912+00:00] slim-app.INFO: Add tampon [] {"uid":"0674033"}
-[2023-04-13T01:23:17.520665+00:00] slim-app.INFO: Tampon was created. with:71a57edd-92d2-4595-b82e-ca6adcb25427 [] {"uid":"0674033"}
-[2023-04-13T01:23:20.132731+00:00] slim-app.INFO: User_Id: f9eb8c4f-2853-4335-89c3-bc6f5cc0e5dc [] {"uid":"032a16f"}
-[2023-04-13T01:23:20.132839+00:00] slim-app.INFO: f9eb8c4f-2853-4335-89c3-bc6f5cc0e5dc [] {"uid":"032a16f"}
-[2023-04-13T01:23:20.132930+00:00] slim-app.INFO: Create tampon [] {"uid":"032a16f"}
-[2023-04-13T01:23:20.132952+00:00] slim-app.INFO: Add tampon [] {"uid":"032a16f"}
-[2023-04-13T01:23:20.135513+00:00] slim-app.INFO: Tampon was created. with:f9eb8c4f-2853-4335-89c3-bc6f5cc0e5dc [] {"uid":"032a16f"}
-[2023-04-13T01:23:21.139851+00:00] slim-app.INFO: User_Id: 4011c5c1-69a4-4042-ac06-d1f24206d819 [] {"uid":"230188d"}
-[2023-04-13T01:23:21.139936+00:00] slim-app.INFO: 4011c5c1-69a4-4042-ac06-d1f24206d819 [] {"uid":"230188d"}
-[2023-04-13T01:23:21.140012+00:00] slim-app.INFO: Create tampon [] {"uid":"230188d"}
-[2023-04-13T01:23:21.140033+00:00] slim-app.INFO: Add tampon [] {"uid":"230188d"}
-[2023-04-13T01:23:21.142087+00:00] slim-app.INFO: Tampon was created. with:4011c5c1-69a4-4042-ac06-d1f24206d819 [] {"uid":"230188d"}
-[2023-04-13T01:23:22.171059+00:00] slim-app.INFO: User_Id: 916cc0b5-1b53-477e-9e3c-09f192a561db [] {"uid":"d77a838"}
-[2023-04-13T01:23:22.171144+00:00] slim-app.INFO: 916cc0b5-1b53-477e-9e3c-09f192a561db [] {"uid":"d77a838"}
-[2023-04-13T01:23:22.171219+00:00] slim-app.INFO: Create tampon [] {"uid":"d77a838"}
-[2023-04-13T01:23:22.171240+00:00] slim-app.INFO: Add tampon [] {"uid":"d77a838"}
-[2023-04-13T01:23:22.173703+00:00] slim-app.INFO: Tampon was created. with:916cc0b5-1b53-477e-9e3c-09f192a561db [] {"uid":"d77a838"}
-[2023-04-13T01:23:23.064266+00:00] slim-app.INFO: User_Id: b99427b0-f8f4-4c9b-ab26-d6421b9ef29c [] {"uid":"3db8868"}
-[2023-04-13T01:23:23.064360+00:00] slim-app.INFO: b99427b0-f8f4-4c9b-ab26-d6421b9ef29c [] {"uid":"3db8868"}
-[2023-04-13T01:23:23.064445+00:00] slim-app.INFO: Create tampon [] {"uid":"3db8868"}
-[2023-04-13T01:23:23.064466+00:00] slim-app.INFO: Add tampon [] {"uid":"3db8868"}
-[2023-04-13T01:26:01.434232+00:00] slim-app.INFO: Tampon list was viewed. [] {"uid":"a19a8e6"}
-[2023-04-13T01:26:14.335093+00:00] slim-app.INFO: User_Id: 439381da-adb2-48d7-a822-4fe219272415 [] {"uid":"0b14bc7"}
-[2023-04-13T01:26:14.335262+00:00] slim-app.INFO: 439381da-adb2-48d7-a822-4fe219272415 [] {"uid":"0b14bc7"}
-[2023-04-13T01:26:14.335618+00:00] slim-app.INFO: Create tampon [] {"uid":"0b14bc7"}
-[2023-04-13T01:26:14.335655+00:00] slim-app.INFO: Add tampon [] {"uid":"0b14bc7"}
-[2023-04-13T01:26:14.338874+00:00] slim-app.INFO: Tampon was created. with:439381da-adb2-48d7-a822-4fe219272415 [] {"uid":"0b14bc7"}
-[2023-04-13T01:26:17.137012+00:00] slim-app.INFO: Tampon list was viewed. [] {"uid":"3a6f662"}
-[2023-04-13T01:26:34.032702+00:00] slim-app.INFO: Tampon list was viewed. [] {"uid":"0e370c5"}
-[2023-04-13T01:26:46.706886+00:00] slim-app.INFO: User_Id: 517effce-babc-4747-824d-fb3f8b251a6c [] {"uid":"2894b5c"}
-[2023-04-13T01:26:46.706994+00:00] slim-app.INFO: 517effce-babc-4747-824d-fb3f8b251a6c [] {"uid":"2894b5c"}
-[2023-04-13T01:26:46.707090+00:00] slim-app.INFO: Create tampon [] {"uid":"2894b5c"}
-[2023-04-13T01:26:46.707112+00:00] slim-app.INFO: Add tampon [] {"uid":"2894b5c"}
-[2023-04-13T01:26:46.709701+00:00] slim-app.INFO: Tampon was created. with:517effce-babc-4747-824d-fb3f8b251a6c [] {"uid":"2894b5c"}
-[2023-04-13T01:26:47.456732+00:00] slim-app.INFO: User_Id: f583e73b-f5b1-45c4-9c82-cbc8e40279e1 [] {"uid":"be9e95f"}
-[2023-04-13T01:26:47.456820+00:00] slim-app.INFO: f583e73b-f5b1-45c4-9c82-cbc8e40279e1 [] {"uid":"be9e95f"}
-[2023-04-13T01:26:47.456895+00:00] slim-app.INFO: Create tampon [] {"uid":"be9e95f"}
-[2023-04-13T01:26:47.456928+00:00] slim-app.INFO: Add tampon [] {"uid":"be9e95f"}
-[2023-04-13T01:26:48.170748+00:00] slim-app.INFO: User_Id: acfeb186-953c-44ee-8a45-1f3eb17d6789 [] {"uid":"ff7f878"}
-[2023-04-13T01:26:48.170839+00:00] slim-app.INFO: acfeb186-953c-44ee-8a45-1f3eb17d6789 [] {"uid":"ff7f878"}
-[2023-04-13T01:26:48.170916+00:00] slim-app.INFO: Create tampon [] {"uid":"ff7f878"}
-[2023-04-13T01:26:48.170937+00:00] slim-app.INFO: Add tampon [] {"uid":"ff7f878"}
-[2023-04-13T01:26:48.994664+00:00] slim-app.INFO: User_Id: 43a2fb7e-84e3-4e31-84e5-6c600014ff54 [] {"uid":"88832f3"}
-[2023-04-13T01:26:48.994792+00:00] slim-app.INFO: 43a2fb7e-84e3-4e31-84e5-6c600014ff54 [] {"uid":"88832f3"}
-[2023-04-13T01:26:48.994949+00:00] slim-app.INFO: Create tampon [] {"uid":"88832f3"}
-[2023-04-13T01:26:48.994978+00:00] slim-app.INFO: Add tampon [] {"uid":"88832f3"}
-[2023-04-13T01:26:48.996426+00:00] slim-app.INFO: Tampon was created. with:43a2fb7e-84e3-4e31-84e5-6c600014ff54 [] {"uid":"88832f3"}
-[2023-04-13T01:26:57.242215+00:00] slim-app.INFO: Tampon list was viewed. [] {"uid":"6fbc1ee"}
-[2023-04-13T01:26:59.292593+00:00] slim-app.INFO: Tampon list was viewed. [] {"uid":"1e7d22e"}
-[2023-04-13T01:27:11.477502+00:00] slim-app.INFO: Tampon list was viewed. [] {"uid":"8906c5b"}
-[2023-04-13T01:35:17.147275+00:00] slim-app.INFO: User_Id: bef2cba2-646e-4194-8e79-0ebd3d562d0a [] {"uid":"620b462"}
-[2023-04-13T01:35:17.147567+00:00] slim-app.INFO: bef2cba2-646e-4194-8e79-0ebd3d562d0a [] {"uid":"620b462"}
-[2023-04-13T01:35:17.147727+00:00] slim-app.INFO: Create tampon [] {"uid":"620b462"}
-[2023-04-13T01:35:17.147754+00:00] slim-app.INFO: Add tampon [] {"uid":"620b462"}
-[2023-04-13T01:35:17.150171+00:00] slim-app.INFO: Tampon was created. with:bef2cba2-646e-4194-8e79-0ebd3d562d0a [] {"uid":"620b462"}
-[2023-04-13T01:35:28.732263+00:00] slim-app.INFO: User_Id: db2bced3-4029-4519-9608-d53953589dc5 [] {"uid":"eca8625"}
-[2023-04-13T01:35:28.732378+00:00] slim-app.INFO: db2bced3-4029-4519-9608-d53953589dc5 [] {"uid":"eca8625"}
-[2023-04-13T01:35:28.732469+00:00] slim-app.INFO: Create tampon [] {"uid":"eca8625"}
-[2023-04-13T01:35:28.732491+00:00] slim-app.INFO: Add tampon [] {"uid":"eca8625"}
-[2023-04-13T01:35:28.734179+00:00] slim-app.INFO: Tampon was created. with:db2bced3-4029-4519-9608-d53953589dc5 [] {"uid":"eca8625"}
-[2023-04-13T01:35:29.958776+00:00] slim-app.INFO: User_Id: b7a42819-6757-4fb2-9847-dfdfba378721 [] {"uid":"ae468db"}
-[2023-04-13T01:35:29.958903+00:00] slim-app.INFO: b7a42819-6757-4fb2-9847-dfdfba378721 [] {"uid":"ae468db"}
-[2023-04-13T01:35:29.959009+00:00] slim-app.INFO: Create tampon [] {"uid":"ae468db"}
-[2023-04-13T01:35:29.959040+00:00] slim-app.INFO: Add tampon [] {"uid":"ae468db"}
-[2023-04-13T01:35:29.960946+00:00] slim-app.INFO: Tampon was created. with:b7a42819-6757-4fb2-9847-dfdfba378721 [] {"uid":"ae468db"}
-[2023-04-13T01:35:30.869547+00:00] slim-app.INFO: User_Id: 9437df32-7c54-44f7-a6a3-ea53321bca76 [] {"uid":"ae15bc1"}
-[2023-04-13T01:35:30.869634+00:00] slim-app.INFO: 9437df32-7c54-44f7-a6a3-ea53321bca76 [] {"uid":"ae15bc1"}
-[2023-04-13T01:35:30.869710+00:00] slim-app.INFO: Create tampon [] {"uid":"ae15bc1"}
-[2023-04-13T01:35:30.869731+00:00] slim-app.INFO: Add tampon [] {"uid":"ae15bc1"}
-[2023-04-13T01:35:30.871357+00:00] slim-app.INFO: Tampon was created. with:9437df32-7c54-44f7-a6a3-ea53321bca76 [] {"uid":"ae15bc1"}
-[2023-04-13T01:36:27.945713+00:00] slim-app.INFO: User_Id: 7a22232b-d9b5-4b45-91d2-55729368ed5c [] {"uid":"b77a739"}
-[2023-04-13T01:36:27.945822+00:00] slim-app.INFO: 7a22232b-d9b5-4b45-91d2-55729368ed5c [] {"uid":"b77a739"}
-[2023-04-13T01:36:27.945918+00:00] slim-app.INFO: Create tampon [] {"uid":"b77a739"}
-[2023-04-13T01:36:27.945940+00:00] slim-app.INFO: Add tampon [] {"uid":"b77a739"}
-[2023-04-13T01:36:27.948533+00:00] slim-app.INFO: Tampon was created. with:7a22232b-d9b5-4b45-91d2-55729368ed5c [] {"uid":"b77a739"}
-[2023-04-13T01:36:28.984040+00:00] slim-app.INFO: User_Id: 61e1cd01-9252-494b-92ce-e1df7ccce9ba [] {"uid":"6e83e76"}
-[2023-04-13T01:36:28.984147+00:00] slim-app.INFO: 61e1cd01-9252-494b-92ce-e1df7ccce9ba [] {"uid":"6e83e76"}
-[2023-04-13T01:36:28.984242+00:00] slim-app.INFO: Create tampon [] {"uid":"6e83e76"}
-[2023-04-13T01:36:28.984264+00:00] slim-app.INFO: Add tampon [] {"uid":"6e83e76"}
-[2023-04-13T01:36:28.986743+00:00] slim-app.INFO: Tampon was created. with:61e1cd01-9252-494b-92ce-e1df7ccce9ba [] {"uid":"6e83e76"}
-[2023-04-13T01:36:29.996315+00:00] slim-app.INFO: User_Id: 4c58d684-50fa-4798-858c-05f9485d1520 [] {"uid":"9d798b9"}
-[2023-04-13T01:36:29.996423+00:00] slim-app.INFO: 4c58d684-50fa-4798-858c-05f9485d1520 [] {"uid":"9d798b9"}
-[2023-04-13T01:36:29.996504+00:00] slim-app.INFO: Create tampon [] {"uid":"9d798b9"}
-[2023-04-13T01:36:29.996527+00:00] slim-app.INFO: Add tampon [] {"uid":"9d798b9"}
-[2023-04-13T01:36:29.999345+00:00] slim-app.INFO: Tampon was created. with:4c58d684-50fa-4798-858c-05f9485d1520 [] {"uid":"9d798b9"}
-[2023-04-13T01:36:37.758633+00:00] slim-app.INFO: User_Id: 14aedf32-473d-4269-93e8-85573c01cabf [] {"uid":"a356dc7"}
-[2023-04-13T01:36:37.758736+00:00] slim-app.INFO: 14aedf32-473d-4269-93e8-85573c01cabf [] {"uid":"a356dc7"}
-[2023-04-13T01:36:37.758828+00:00] slim-app.INFO: Create tampon [] {"uid":"a356dc7"}
-[2023-04-13T01:36:37.758849+00:00] slim-app.INFO: Add tampon [] {"uid":"a356dc7"}
-[2023-04-13T01:36:37.761992+00:00] slim-app.INFO: Tampon was created. with:14aedf32-473d-4269-93e8-85573c01cabf [] {"uid":"a356dc7"}
-[2023-04-13T01:36:38.551890+00:00] slim-app.INFO: User_Id: 7e6d1dfd-02d3-439d-9d09-d741dc91dca0 [] {"uid":"acbc4b8"}
-[2023-04-13T01:36:38.552031+00:00] slim-app.INFO: 7e6d1dfd-02d3-439d-9d09-d741dc91dca0 [] {"uid":"acbc4b8"}
-[2023-04-13T01:36:38.552177+00:00] slim-app.INFO: Create tampon [] {"uid":"acbc4b8"}
-[2023-04-13T01:36:38.552699+00:00] slim-app.INFO: Add tampon [] {"uid":"acbc4b8"}
-[2023-04-13T01:36:38.555555+00:00] slim-app.INFO: Tampon was created. with:7e6d1dfd-02d3-439d-9d09-d741dc91dca0 [] {"uid":"acbc4b8"}
-[2023-04-13T01:36:39.268733+00:00] slim-app.INFO: User_Id: 36c632bf-5478-4217-9bf8-b33a57a20e55 [] {"uid":"6f5b70a"}
-[2023-04-13T01:36:39.268821+00:00] slim-app.INFO: 36c632bf-5478-4217-9bf8-b33a57a20e55 [] {"uid":"6f5b70a"}
-[2023-04-13T01:36:39.268897+00:00] slim-app.INFO: Create tampon [] {"uid":"6f5b70a"}
-[2023-04-13T01:36:39.268918+00:00] slim-app.INFO: Add tampon [] {"uid":"6f5b70a"}
-[2023-04-13T01:36:39.271214+00:00] slim-app.INFO: Tampon was created. with:36c632bf-5478-4217-9bf8-b33a57a20e55 [] {"uid":"6f5b70a"}
-[2023-04-13T01:36:39.963738+00:00] slim-app.INFO: User_Id: caeef071-309f-47b7-9536-b17390c796a1 [] {"uid":"e59c95e"}
-[2023-04-13T01:36:39.963845+00:00] slim-app.INFO: caeef071-309f-47b7-9536-b17390c796a1 [] {"uid":"e59c95e"}
-[2023-04-13T01:36:39.963927+00:00] slim-app.INFO: Create tampon [] {"uid":"e59c95e"}
-[2023-04-13T01:36:39.963949+00:00] slim-app.INFO: Add tampon [] {"uid":"e59c95e"}
-[2023-04-13T01:36:39.965604+00:00] slim-app.INFO: Tampon was created. with:caeef071-309f-47b7-9536-b17390c796a1 [] {"uid":"e59c95e"}
-[2023-04-13T01:36:40.604639+00:00] slim-app.INFO: User_Id: 0f1fe24d-837c-4205-baa7-d656c1f88965 [] {"uid":"804f0d5"}
-[2023-04-13T01:36:40.604729+00:00] slim-app.INFO: 0f1fe24d-837c-4205-baa7-d656c1f88965 [] {"uid":"804f0d5"}
-[2023-04-13T01:36:40.604812+00:00] slim-app.INFO: Create tampon [] {"uid":"804f0d5"}
-[2023-04-13T01:36:40.604834+00:00] slim-app.INFO: Add tampon [] {"uid":"804f0d5"}
-[2023-04-13T01:36:41.308339+00:00] slim-app.INFO: User_Id: cfc1e4ea-48b4-4a5e-a640-339c6118f9f2 [] {"uid":"0703762"}
-[2023-04-13T01:36:41.308430+00:00] slim-app.INFO: cfc1e4ea-48b4-4a5e-a640-339c6118f9f2 [] {"uid":"0703762"}
-[2023-04-13T01:36:41.308506+00:00] slim-app.INFO: Create tampon [] {"uid":"0703762"}
-[2023-04-13T01:36:41.308527+00:00] slim-app.INFO: Add tampon [] {"uid":"0703762"}
-[2023-04-13T01:38:55.586428+00:00] slim-app.INFO: User_Id: 12aca8fb-9a7a-455f-b39e-0116c3314de0 [] {"uid":"7a7f2c3"}
-[2023-04-13T01:38:55.586539+00:00] slim-app.INFO: 12aca8fb-9a7a-455f-b39e-0116c3314de0 [] {"uid":"7a7f2c3"}
-[2023-04-13T01:38:55.586631+00:00] slim-app.INFO: Create tampon [] {"uid":"7a7f2c3"}
-[2023-04-13T01:38:55.586664+00:00] slim-app.INFO: Add tampon [] {"uid":"7a7f2c3"}
-[2023-04-13T01:41:05.397610+00:00] slim-app.INFO: User_Id: 15c0c95c-f03b-4c12-a196-bf07cf05bd70 [] {"uid":"a070a28"}
-[2023-04-13T01:41:05.397727+00:00] slim-app.INFO: 15c0c95c-f03b-4c12-a196-bf07cf05bd70 [] {"uid":"a070a28"}
-[2023-04-13T01:41:05.397848+00:00] slim-app.INFO: Create tampon [] {"uid":"a070a28"}
-[2023-04-13T01:41:05.397876+00:00] slim-app.INFO: Add tampon [] {"uid":"a070a28"}
-[2023-04-13T01:41:05.402033+00:00] slim-app.INFO: Tampon was created. with:15c0c95c-f03b-4c12-a196-bf07cf05bd70 [] {"uid":"a070a28"}
-[2023-04-13T01:41:47.176865+00:00] slim-app.INFO: User_Id: 91bfa446-f082-4a4a-9614-ef6bdeeb90f7 [] {"uid":"304e32c"}
-[2023-04-13T01:41:47.176990+00:00] slim-app.INFO: 91bfa446-f082-4a4a-9614-ef6bdeeb90f7 [] {"uid":"304e32c"}
-[2023-04-13T01:41:47.177088+00:00] slim-app.INFO: Create tampon [] {"uid":"304e32c"}
-[2023-04-13T01:41:47.177111+00:00] slim-app.INFO: Add tampon [] {"uid":"304e32c"}
-[2023-04-13T01:41:47.180075+00:00] slim-app.INFO: Tampon was created. with:91bfa446-f082-4a4a-9614-ef6bdeeb90f7 [] {"uid":"304e32c"}
-[2023-04-13T01:41:47.974713+00:00] slim-app.INFO: User_Id: 1c0a38df-3806-4fcc-8371-c875c5bb9adf [] {"uid":"91b067b"}
-[2023-04-13T01:41:47.974810+00:00] slim-app.INFO: 1c0a38df-3806-4fcc-8371-c875c5bb9adf [] {"uid":"91b067b"}
-[2023-04-13T01:41:47.974892+00:00] slim-app.INFO: Create tampon [] {"uid":"91b067b"}
-[2023-04-13T01:41:47.974913+00:00] slim-app.INFO: Add tampon [] {"uid":"91b067b"}
-[2023-04-13T01:41:47.976643+00:00] slim-app.INFO: Tampon was created. with:1c0a38df-3806-4fcc-8371-c875c5bb9adf [] {"uid":"91b067b"}
-[2023-04-13T01:41:48.630019+00:00] slim-app.INFO: User_Id: 1768dfc0-7c0f-4180-9c39-58e29084885a [] {"uid":"329f823"}
-[2023-04-13T01:41:48.630105+00:00] slim-app.INFO: 1768dfc0-7c0f-4180-9c39-58e29084885a [] {"uid":"329f823"}
-[2023-04-13T01:41:48.630182+00:00] slim-app.INFO: Create tampon [] {"uid":"329f823"}
-[2023-04-13T01:41:48.630203+00:00] slim-app.INFO: Add tampon [] {"uid":"329f823"}
-[2023-04-13T01:41:48.631829+00:00] slim-app.INFO: Tampon was created. with:1768dfc0-7c0f-4180-9c39-58e29084885a [] {"uid":"329f823"}
-[2023-04-13T01:41:49.278313+00:00] slim-app.INFO: User_Id: 79ac8127-7dfe-413e-ba9f-833b5e47a7f0 [] {"uid":"6c7e8c1"}
-[2023-04-13T01:41:49.278407+00:00] slim-app.INFO: 79ac8127-7dfe-413e-ba9f-833b5e47a7f0 [] {"uid":"6c7e8c1"}
-[2023-04-13T01:41:49.278484+00:00] slim-app.INFO: Create tampon [] {"uid":"6c7e8c1"}
-[2023-04-13T01:41:49.278506+00:00] slim-app.INFO: Add tampon [] {"uid":"6c7e8c1"}
-[2023-04-13T01:41:49.281359+00:00] slim-app.INFO: Tampon was created. with:79ac8127-7dfe-413e-ba9f-833b5e47a7f0 [] {"uid":"6c7e8c1"}
-[2023-04-13T01:41:49.952361+00:00] slim-app.INFO: User_Id: 5d7299ce-b453-4afc-91d7-dedee229dee9 [] {"uid":"353fc82"}
-[2023-04-13T01:41:49.952447+00:00] slim-app.INFO: 5d7299ce-b453-4afc-91d7-dedee229dee9 [] {"uid":"353fc82"}
-[2023-04-13T01:41:49.952523+00:00] slim-app.INFO: Create tampon [] {"uid":"353fc82"}
-[2023-04-13T01:41:49.952544+00:00] slim-app.INFO: Add tampon [] {"uid":"353fc82"}
-[2023-04-13T01:41:49.953880+00:00] slim-app.INFO: Tampon was created. with:5d7299ce-b453-4afc-91d7-dedee229dee9 [] {"uid":"353fc82"}
-[2023-04-13T01:41:50.564201+00:00] slim-app.INFO: User_Id: d9538e0a-96d2-47f1-8c28-79ed226e4cc0 [] {"uid":"2a8ceb0"}
-[2023-04-13T01:41:50.564296+00:00] slim-app.INFO: d9538e0a-96d2-47f1-8c28-79ed226e4cc0 [] {"uid":"2a8ceb0"}
-[2023-04-13T01:41:50.564379+00:00] slim-app.INFO: Create tampon [] {"uid":"2a8ceb0"}
-[2023-04-13T01:41:50.564401+00:00] slim-app.INFO: Add tampon [] {"uid":"2a8ceb0"}
-[2023-04-13T01:41:50.566618+00:00] slim-app.INFO: Tampon was created. with:d9538e0a-96d2-47f1-8c28-79ed226e4cc0 [] {"uid":"2a8ceb0"}
-[2023-04-13T01:41:51.198711+00:00] slim-app.INFO: User_Id: 41450664-777e-4449-b3da-35c658d33c37 [] {"uid":"087a051"}
-[2023-04-13T01:41:51.198812+00:00] slim-app.INFO: 41450664-777e-4449-b3da-35c658d33c37 [] {"uid":"087a051"}
-[2023-04-13T01:41:51.198892+00:00] slim-app.INFO: Create tampon [] {"uid":"087a051"}
-[2023-04-13T01:41:51.198913+00:00] slim-app.INFO: Add tampon [] {"uid":"087a051"}
-[2023-04-13T01:41:51.200600+00:00] slim-app.INFO: Tampon was created. with:41450664-777e-4449-b3da-35c658d33c37 [] {"uid":"087a051"}
+[2023-04-15T21:23:19.515135+00:00] slim-app.INFO: Tampon list was viewed. [] {"uid":"eede4e7"}
+[2023-04-15T22:49:26.119451+00:00] slim-app.INFO: Users list was viewed. [] {"uid":"df53243"}
+[2023-04-16T21:49:35.874616+00:00] slim-app.INFO: ICI. [] {"uid":"d7b25bb"}
+[2023-04-16T21:51:54.611127+00:00] slim-app.INFO: ICI. [] {"uid":"869bd21"}
+[2023-04-16T21:55:07.469427+00:00] slim-app.INFO: Array ( )  [] {"uid":"fa13671"}
+[2023-04-16T21:55:59.569948+00:00] slim-app.INFO: Array (     [Authorization] => Array         (             [0] => Basic ZGFtaWVuOmRhbWllbi1jaGFnbmF1ZA==         )      [User-Agent] => Array         (             [0] => PostmanRuntime/7.32.2         )      [Accept] => Array         (             [0] => */*         )      [Postman-Token] => Array         (             [0] => 7c1ceaa3-f47c-4a83-8c32-90fb7430ccbd         )      [Host] => Array         (             [0] => 192.168.1.100         )      [Accept-Encoding] => Array         (             [0] => gzip, deflate, br         )      [Connection] => Array         (             [0] => keep-alive         )      [Cookie] => Array         (             [0] => PHPSESSID=5et4k5acaneqo1aeedm2kf6v4i         )  )  [] {"uid":"21523d7"}
+[2023-04-16T21:57:28.700882+00:00] slim-app.INFO:  [] {"uid":"5004f1f"}
+[2023-04-16T21:58:11.153236+00:00] slim-app.INFO: damien [] {"uid":"c1d2864"}
+[2023-04-16T21:59:09.043077+00:00] slim-app.INFO: user:damien [] {"uid":"37128a6"}
+[2023-04-16T22:01:34.133756+00:00] slim-app.INFO: user:damien [] {"uid":"8b39f1e"}
+[2023-04-16T22:03:13.441456+00:00] slim-app.INFO: user:damien [] {"uid":"d1cafa4"}
+[2023-04-16T22:03:47.981234+00:00] slim-app.INFO: user:damien [] {"uid":"96e97ae"}
+[2023-04-16T22:04:30.486892+00:00] slim-app.INFO: user:damien [] {"uid":"dd1bd45"}
+[2023-04-16T22:04:30.499290+00:00] slim-app.INFO: Users list was viewed. [] {"uid":"dd1bd45"}
+[2023-04-16T22:05:43.939279+00:00] slim-app.INFO: user:damien [] {"uid":"3e5a6e9"}
+[2023-04-16T22:05:43.946663+00:00] slim-app.INFO: Users list was viewed. [] {"uid":"3e5a6e9"}
+[2023-04-16T22:11:56.065843+00:00] slim-app.INFO: user:damien [] {"uid":"c96ecd8"}
+[2023-04-16T22:11:56.073620+00:00] slim-app.INFO: Users list was viewed. [] {"uid":"c96ecd8"}
+[2023-04-16T22:12:18.063030+00:00] slim-app.INFO: user:damien [] {"uid":"f329c00"}
+[2023-04-16T22:12:18.068438+00:00] slim-app.INFO: Users list was viewed. [] {"uid":"f329c00"}
+[2023-04-16T22:12:41.245326+00:00] slim-app.INFO: user:damien [] {"uid":"e0d5b1f"}
+[2023-04-16T22:12:41.251525+00:00] slim-app.INFO: Users list was viewed. [] {"uid":"e0d5b1f"}
+[2023-04-16T22:22:02.822091+00:00] slim-app.INFO: user:damien [] {"uid":"f011997"}
+[2023-04-16T22:24:07.519977+00:00] slim-app.INFO: user:damien [] {"uid":"19c4dde"}
+[2023-04-16T22:24:07.536455+00:00] slim-app.INFO: Users list was viewed. [] {"uid":"19c4dde"}
+[2023-04-16T22:26:10.278346+00:00] slim-app.INFO: user:damien [] {"uid":"7ae8165"}
+[2023-04-16T22:26:10.290032+00:00] slim-app.INFO: Users list was viewed. [] {"uid":"7ae8165"}
+[2023-04-16T22:26:27.647088+00:00] slim-app.INFO: user:damien [] {"uid":"95dbf24"}
+[2023-04-16T22:26:27.655587+00:00] slim-app.INFO: Users list was viewed. [] {"uid":"95dbf24"}
+[2023-04-16T22:26:30.641165+00:00] slim-app.INFO: user:damien [] {"uid":"43b5e3f"}
+[2023-04-16T22:26:30.648213+00:00] slim-app.INFO: Users list was viewed. [] {"uid":"43b5e3f"}

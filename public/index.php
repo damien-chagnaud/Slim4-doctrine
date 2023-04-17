@@ -45,6 +45,13 @@ $app = AppFactory::create();
 $app->setBasePath('/data');
 $callableResolver = $app->getCallableResolver();
 
+/** @var SettingsInterface $settings */
+$settings = $container->get(SettingsInterface::class);
+
+$displayErrorDetails = $settings->get('displayErrorDetails');
+$logError = $settings->get('logError');
+$logErrorDetails = $settings->get('logErrorDetails');
+
 // Register middleware
 $middleware = require __DIR__ . '/../app/middleware.php';
 $middleware($app);
@@ -52,13 +59,6 @@ $middleware($app);
 // Register routes
 $routes = require __DIR__ . '/../app/routes.php';
 $routes($app);
-
-/** @var SettingsInterface $settings */
-$settings = $container->get(SettingsInterface::class);
-
-$displayErrorDetails = $settings->get('displayErrorDetails');
-$logError = $settings->get('logError');
-$logErrorDetails = $settings->get('logErrorDetails');
 
 // Create Request object from globals
 $serverRequestCreator = ServerRequestCreatorFactory::create();
