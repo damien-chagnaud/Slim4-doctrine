@@ -12,16 +12,27 @@ use App\Application\Actions\Tampon\NewTamponAction;
 
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
+use Monolog\Processor\UidProcessor;
 use Slim\App;
 use Slim\Interfaces\RouteCollectorProxyInterface as Group;
 use Tuupola\Middleware\HttpBasicAuthentication\PdoAuthenticator;
-use Tuupola\Middleware\JwtAuthentication;
+use App\Application\Middleware\JwtAuthentication;
 
 
 //Tuupola\Middleware\JwtAuthentication
 
 return function (App $app) {
     $pdo = new PDO($_ENV['PDO_URL'], $_ENV['PDO_USER'], $_ENV['PDO_PASS']);
+
+    //LOGGER
+    $logger = new Logger('slim-app');
+    $processor = new UidProcessor();
+    $logger->pushProcessor($processor);
+    $handler = new StreamHandler(isset($_ENV['docker']) ? 'php://stdout' : __DIR__ . '/../logs/app.log', Logger::DEBUG);
+    $logger->pushHandler($handler);
+
 
     $app->options('/{routes:.*}', function (Request $request, Response $response) {
         // CORS Pre-Flight OPTIONS Request Handler
@@ -47,14 +58,19 @@ return function (App $app) {
         ]),
     ]));
 
+    $app->group('/tampons', function (Group $group) {
+        $group->get('', ListTamponAction::class);
+    });
 
     $app->group('/tampons/admin', function (Group $group) {
-        $group->get('', function (Request $request, Response $response) {$response->getBody()->write('Tampons admin pages'. print_r($request,true));return $response;});
+        $group->get('', function (Request $request, Response $response) {$response->getBody()->write('Tampons admin pages: </br>'. print_r($request->getAttribute('token'),true));return $response;});
         $group->post('/new', NewTamponAction::class);
-        $group->get('/delete', ListTamponAction::class);
-        $group->get('/stock', ListTamponAction::class);
-    })->add(new Tuupola\Middleware\JwtAuthentication([
-        "secret" =>  "PyzGdxoHNF4ksCxRib25edSdWOgb7cyd2FlkKDsoRHPtJb9izsHWwhDOZ0wurQmau3MyOw6JtSx"
+        $group->post('/delete', ListTamponAction::class);
+        $group->post('/stock', ListTamponAction::class);
+    })->add(new  JwtAuthentication([
+        "logger" => $logger,
+        "secret" => $_ENV['SECRET'],
+        "attribute" => "token"
     ]));
 
     
