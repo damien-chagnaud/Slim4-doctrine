@@ -69,8 +69,13 @@ return function (App $app) {
         $group->post('/stock', ListTamponAction::class);
     })->add(new  JwtAuthentication([
         "logger" => $logger,
-        "secret" => $_ENV['SECRET'],
-        "attribute" => "token"
+        "attribute" => "token",
+        "authenticator" => new PdoAuthenticator([
+            "pdo" => $pdo,
+            "table" => "users",
+            "user" => "username",
+            "hash" => "password"
+        ]),
     ]));
 
     

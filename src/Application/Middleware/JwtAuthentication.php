@@ -52,6 +52,8 @@ use Tuupola\Http\Factory\ResponseFactory;
 use App\Application\Middleware\JwtAuthentication\RequestMethodRule;
 use App\Application\Middleware\JwtAuthentication\RequestPathRule;
 use App\Application\Middleware\JwtAuthentication\RuleInterface;
+use App\Application\Middleware\JwtAuthentication\AuthenticatorInterface;
+use App\Application\Middleware\JwtAuthentication\PdoGetUserToken;
 
 final class JwtAuthentication implements MiddlewareInterface
 {
@@ -106,7 +108,9 @@ final class JwtAuthentication implements MiddlewareInterface
         "ignore" => [],
         "before" => null,
         "after" => null,
-        "error" => null
+        "error" => null,
+        "authenticator" => null,
+        "secret" => null
     ];
 
     /**
@@ -145,6 +149,12 @@ final class JwtAuthentication implements MiddlewareInterface
                 "path" => $this->options["path"],
                 "ignore" => $this->options["ignore"]
             ]));
+        }
+
+             /* There must be an authenticator either passed via options */
+        /* or added because $this->options["users"] was an array. */
+        if (null === $this->options["authenticator"] && null === $this->options["secret"]) {
+            throw new \RuntimeException("Authenticator or secret must be given");
         }
     }
 
@@ -314,12 +324,52 @@ final class JwtAuthentication implements MiddlewareInterface
     private function decodeToken(string $token): array
     {
         try {
-            $decoded = JWT::decode(
-                $token,
-                $this->options["secret"],
-                (array) $this->options["algorithm"]
-            );
-            return (array) $decoded;
+            if(null !== $this->options["authenticator"]){
+                $this->log(LogLevel::DEBUG, "Using authenticator");
+
+                $tks = \explode('.', $token);
+                if (\count($tks) !== 3) {
+                    throw new UnexpectedValueException('Wrong number of segments');
+                }
+
+                list($headb64, $bodyb64, $cryptob64) = $tks;
+                
+                $payloadRaw = static::urlsafeB64Decode($bodyb64);
+                if (null === ($payload = static::jsonDecode($payloadRaw))) {
+                    throw new UnexpectedValueException('Invalid claims encoding');
+                }
+                if (\is_array($payload)) {
+                    // prevent PHP Fatal Error in edge-cases when payload is empty array
+                    $payload = (object) $payload;
+                }
+                if (!$payload instanceof stdClass) {
+                    throw new UnexpectedValueException('Payload must be a JSON object');
+                }
+
+                if (!isset($payload->Username)) {
+                    throw new UnexpectedValueException('No username');
+                }
+
+                $user = $payload->Username;
+                $tokenSecret = $this->options["authenticator"](["user"=>$user]);
+
+                if (false ==) {
+                    $decoded = JWT::decode(
+                        $token,
+                        $tokenSecret,
+                        (array) $this->options["algorithm"]
+                    );
+                    return (array) $decoded;
+                }
+
+            }else{
+                $decoded = JWT::decode(
+                    $token,
+                    $this->options["secret"],
+                    (array) $this->options["algorithm"]
+                );
+                return (array) $decoded;
+            }
         } catch (Exception $exception) {
             $this->log(LogLevel::WARNING, $exception->getMessage(), [$token]);
             throw $exception;
@@ -408,6 +458,14 @@ final class JwtAuthentication implements MiddlewareInterface
             );
         }
         $this->options["secret"] = $secret;
+    }
+
+    /**
+     * Set the authenticator.
+     */
+    private function authenticator(callable $authenticator): void
+    {
+        $this->options["authenticator"] = $authenticator;
     }
 
     /**

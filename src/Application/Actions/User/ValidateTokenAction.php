@@ -7,11 +7,14 @@ namespace App\Application\Actions\User;
 use Psr\Http\Message\ResponseInterface as Response;
 use App\Application\Actions\Action;
 use App\Domain\User\UserRepository;
+use App\Domain\Token\TokenRepository;
 use Psr\Log\LoggerInterface;
+use function uuid_create;
 
-class TokenUsersAction extends UserAction
+class ValidateTokenAction extends UserAction
 {
     protected UserRepository $userRepository;
+    protected TokenRepository $tokenRepository;
     protected LoggerInterface $logger;
 
     /**
@@ -23,11 +26,12 @@ class TokenUsersAction extends UserAction
 
         $this->logger->info("user:".$userName);
 
-        $token = $this->userRepository->generateToken($userName);
+        //Retrive User data
+        $user = $this->userRepository->findOneBy(['username' => $username]);
 
-        $this->logger->info("Users list was viewed.");
+       
 
-        $responseData = ['token'=>$token];
+        
 
         return $this->respondWithData($responseData);
     }

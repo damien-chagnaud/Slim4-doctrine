@@ -38,29 +38,4 @@ class DatabaseUserRepository implements UserRepository
         return $user;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function generateToken(string $username): string
-    {
-        /** @var User $user */
-        $user = $this->repository->findOneBy(['username' => $username]);
-
-        if ($user === null) {
-            throw new UserNotFoundException();
-        }
-
-        $newToken = hash('sha256', bin2hex(random_bytes(26)));
-
-        $user->setUidkey($newToken);
-
-        $this->entity_manager->persist($user);
-        $this->entity_manager->flush();
-
-        return $user->getUidkey();
-    }
-
-    
-
-
 }
