@@ -33,9 +33,12 @@ SOFTWARE.
 
 namespace App\Application\Middleware\JwtAuthentication;
 
+use App\Application\Middleware\JwtAuthentication\Token;
+
 final class PdoGetUserToken
  implements AuthenticatorInterface
 {
+
     /**
      * Stores all the options passed to the authenticator.
      * @var mixed[]
@@ -64,13 +67,16 @@ final class PdoGetUserToken
     /**
      * @param string[] $arguments
      */
-    public function __invoke(array $arguments): bool
+    public function __invoke(array $arguments): Token
     {
+
+       
         $user = $arguments["user"];
 
         $usql = $this->userRequest();
 
         $statement = $this->options["pdo"]->prepare($usql);
+
         $statement->execute([$user]);
 
         $uiid = null;
@@ -78,7 +84,7 @@ final class PdoGetUserToken
         if ($user = $statement->fetch(\PDO::FETCH_ASSOC)) {
             $uiid = $user["id"];
         }else{
-            return false;
+            return null;
         }
 
         $tsql = $this->tokenRequest();
@@ -87,10 +93,13 @@ final class PdoGetUserToken
         $statement->execute([$uiid]);
 
         if ($token = $statement->fetch(\PDO::FETCH_ASSOC)) {
-            return $token["token"];
+
+            if($token["expiration"])
+            $tokenObj = new Token($token["id"], $token["uiid"], $token["token"], $token["created"], $token["expiration"]);
+            return $tokenObj ;
         }
 
-        return false;
+        return null;
     }
 
     public function userRequest(): string
@@ -142,4 +151,5 @@ final class PdoGetUserToken
 
         return (string) preg_replace("!\s+!", " ", $sql);
     }
+
 }

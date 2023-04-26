@@ -12,5 +12,12 @@ interface UserRepository
      * @return string
      * @throws UserNotFoundException
      */
-    public function generateToken(string $username): string;
+    public function findUserByName(string $username): User;
+
+    /**
+     * @param ivoid
+     * @return string
+     * @throws UserNotFoundException
+     */
+    public function findUserByUiid(string $uiid): User;
 }

@@ -9,7 +9,7 @@ use App\Domain\Token\TokenNotFoundException;
 use App\Domain\Token\TokenRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
-
+use function uuid_create;
 
 class DatabaseTokenRepository implements TokenRepository
 {
@@ -37,22 +37,15 @@ class DatabaseTokenRepository implements TokenRepository
         return $token ;
     }
 
-    public function add(Token $token): void
-    {
-        $this->entity_manager->persist($token);
-        $this->entity_manager->flush();
-    }
-
      /**
      * {@inheritdoc}
      */
-    public function generateToken(User $user, string $id): string
+    public function generateToken(string $uiid, string $id): string
     {
-        $uiid = $user->getId();
-
+        
         //if user exist in token table:
-        $token = $this->entity_manager->findOneBy(['uiid' => $uiid]);
-
+        $token = $this->repository->findOneBy(['uiid' => $uiid]);
+        
         $hash = hash('sha256', bin2hex(random_bytes(26)));
 
         $now = time();
@@ -71,35 +64,5 @@ class DatabaseTokenRepository implements TokenRepository
 
         return $hash;
     }
-
-     /**
-     * {@inheritdoc}
-     */
-    public function validateToken(string $tokenHash, string $uiid): bool
-    {
-        $token = $this->entity_manager->findOneBy(['token' => $tokenHash]);
-
-        $result = true;
-
-        //token not found:
-        if ($token  === null) {
-            $result = false;
-        }
-
-        //token not same Uiid
-        $TokenUiid = $token->getUiid();
-        if($TokenUiid != $uiid){
-            $result = false;
-        }
-
-        //token expired
-        $exp = $token->getExpiration();
-        if($exp <= time()){
-            $result = false;
-        }
-
-        return $result;
-    }
-
-
+    
 }

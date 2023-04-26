@@ -11,9 +11,9 @@ interface TokenRepository
      */
     public function findTokenOfUiid(string $uiid): Token;
 
-    public function generateToken(User $user, string $id): string;
-
-    public function add(Token $token): void;
-
+    /**
+     * @throws TokenNotFoundException
+     */
+    public function generateToken(string $uiid, string $id): string;
 
 }

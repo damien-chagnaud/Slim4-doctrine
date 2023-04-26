@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 #Users:
-use App\Application\Actions\User\TokenUsersAction;
+use App\Application\Actions\User\GenerateTokenAction;
 
 #Tampons:
 use App\Application\Actions\Tampon\ListTamponAction;
@@ -18,6 +18,7 @@ use Monolog\Processor\UidProcessor;
 use Slim\App;
 use Slim\Interfaces\RouteCollectorProxyInterface as Group;
 use Tuupola\Middleware\HttpBasicAuthentication\PdoAuthenticator;
+use App\Application\Middleware\JwtAuthentication\PdoGetUserToken;
 use App\Application\Middleware\JwtAuthentication;
 
 
@@ -45,7 +46,7 @@ return function (App $app) {
         return $response;
     });
 
-    $app->get('/token', TokenUsersAction::class)->add(new Tuupola\Middleware\HttpBasicAuthentication([
+    $app->get('/token', GenerateTokenAction::class)->add(new Tuupola\Middleware\HttpBasicAuthentication([
         "realm" => "Protected",
         "before" => function ($request, $arguments) {
             return $request->withAttribute("user", $arguments["user"]);
@@ -63,19 +64,27 @@ return function (App $app) {
     });
 
     $app->group('/tampons/admin', function (Group $group) {
-        $group->get('', function (Request $request, Response $response) {$response->getBody()->write('Tampons admin pages: </br>'. print_r($request->getAttribute('token'),true));return $response;});
+        $group->get('', function (Request $request, Response $response) {$response->getBody()->write('Tampons admin pages:'. print_r($request->getAttribute('token'),true));return $response;});
         $group->post('/new', NewTamponAction::class);
         $group->post('/delete', ListTamponAction::class);
         $group->post('/stock', ListTamponAction::class);
     })->add(new  JwtAuthentication([
         "logger" => $logger,
         "attribute" => "token",
-        "authenticator" => new PdoAuthenticator([
+        "authenticator" => new PdoGetUserToken([
             "pdo" => $pdo,
             "table" => "users",
             "user" => "username",
             "hash" => "password"
         ]),
+        "error" =>  function ($response, $arguments) {
+            $data["status"] = "error";
+            $data["message"] = $arguments["message"];
+            $response->getBody()->write(
+                json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT)
+            );
+            return $response->withHeader("Content-Type", "application/json");
+        }
     ]));
 
     

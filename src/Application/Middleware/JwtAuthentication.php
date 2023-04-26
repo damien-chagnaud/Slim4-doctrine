@@ -54,6 +54,7 @@ use App\Application\Middleware\JwtAuthentication\RequestPathRule;
 use App\Application\Middleware\JwtAuthentication\RuleInterface;
 use App\Application\Middleware\JwtAuthentication\AuthenticatorInterface;
 use App\Application\Middleware\JwtAuthentication\PdoGetUserToken;
+use App\Application\Middleware\JwtAuthentication\Token;
 
 final class JwtAuthentication implements MiddlewareInterface
 {
@@ -154,7 +155,7 @@ final class JwtAuthentication implements MiddlewareInterface
              /* There must be an authenticator either passed via options */
         /* or added because $this->options["users"] was an array. */
         if (null === $this->options["authenticator"] && null === $this->options["secret"]) {
-            throw new \RuntimeException("Authenticator or secret must be given");
+            throw new \RuntimeException("01:Authenticator or secret must be given");
         }
     }
 
@@ -175,7 +176,7 @@ final class JwtAuthentication implements MiddlewareInterface
         if ("https" !== $scheme && true === $this->options["secure"]) {
             if (!in_array($host, $this->options["relaxed"])) {
                 $message = sprintf(
-                    "Insecure use of middleware over %s denied by configuration.",
+                    "02:Insecure use of middleware over %s denied by configuration.",
                     strtoupper($scheme)
                 );
                 throw new RuntimeException($message);
@@ -185,8 +186,14 @@ final class JwtAuthentication implements MiddlewareInterface
         /* If token cannot be found or decoded return with 401 Unauthorized. */
         try {
             $token = $this->fetchToken($request);
+
+            if(null === $token){
+                throw new RuntimeException("");
+            }
+
             $decoded = $this->decodeToken($token);
         } catch (RuntimeException | DomainException $exception) {
+            $this->log(LogLevel::DEBUG, "ERROR:".$exception->getMessage());
             $response = (new ResponseFactory)->createResponse(401);
             return $this->processError($response, [
                 "message" => $exception->getMessage(),
@@ -199,10 +206,10 @@ final class JwtAuthentication implements MiddlewareInterface
             "token" => $token,
         ];
 
-        /* Add decoded token to request as attribute when requested. */
+        /* Add decoded token to request as attribute when requested. 
         if ($this->options["attribute"]) {
             $request = $request->withAttribute($this->options["attribute"], $decoded);
-        }
+        }*/
 
         /* Modify $request before calling next middleware. */
         if (is_callable($this->options["before"])) {
@@ -282,6 +289,7 @@ final class JwtAuthentication implements MiddlewareInterface
                 return $handlerResponse;
             }
         }
+        $this->log(LogLevel::DEBUG, "Response::".print_r($response,true));
         return $response;
     }
 
@@ -312,8 +320,7 @@ final class JwtAuthentication implements MiddlewareInterface
         };
 
         /* If everything fails log and throw. */
-        $this->log(LogLevel::WARNING, "Token not found");
-        throw new RuntimeException("Token not found.");
+        throw new RuntimeException("03:Token not found.");
     }
 
     /**
@@ -325,43 +332,61 @@ final class JwtAuthentication implements MiddlewareInterface
     {
         try {
             if(null !== $this->options["authenticator"]){
-                $this->log(LogLevel::DEBUG, "Using authenticator");
 
                 $tks = \explode('.', $token);
                 if (\count($tks) !== 3) {
-                    throw new UnexpectedValueException('Wrong number of segments');
+                    throw new RuntimeException('04:Wrong number of segments');
                 }
 
                 list($headb64, $bodyb64, $cryptob64) = $tks;
                 
-                $payloadRaw = static::urlsafeB64Decode($bodyb64);
-                if (null === ($payload = static::jsonDecode($payloadRaw))) {
-                    throw new UnexpectedValueException('Invalid claims encoding');
+                $payloadRaw = JWT::urlsafeB64Decode($bodyb64);
+                if (null === ($payload = JWT::jsonDecode($payloadRaw))) {
+                    throw new RuntimeException('05:Invalid claims encoding');
                 }
+
                 if (\is_array($payload)) {
                     // prevent PHP Fatal Error in edge-cases when payload is empty array
                     $payload = (object) $payload;
                 }
-                if (!$payload instanceof stdClass) {
-                    throw new UnexpectedValueException('Payload must be a JSON object');
-                }
+
+               /* if (!($payload instanceof stdClass)) {
+                    $this->log(LogLevel::DEBUG, "Payload must be a JSON object");
+                    throw new RuntimeException('Payload must be a JSON object');
+                }*/
+
+
 
                 if (!isset($payload->Username)) {
-                    throw new UnexpectedValueException('No username');
+                    throw new RuntimeException('06:No username');
                 }
 
                 $user = $payload->Username;
-                $tokenSecret = $this->options["authenticator"](["user"=>$user]);
 
-                if (false ==) {
-                    $decoded = JWT::decode(
-                        $token,
-                        $tokenSecret,
-                        (array) $this->options["algorithm"]
-                    );
-                    return (array) $decoded;
+                //$this->log(LogLevel::DEBUG, "USER:".$user);
+
+                $tokenObj = $this->options["authenticator"](["user"=>$user]);
+
+                if (null === $tokenObj) {
+                    throw new RuntimeException("07:Token Not found");
                 }
 
+                $expiration = $tokenObj->getExpiration();
+                $now = time();
+
+                $this->log(LogLevel::DEBUG, "Expire:".$expiration);
+
+                if($expiration < $now ){
+                    throw new RuntimeException("08:Token expired");
+                }
+
+                $decoded = JWT::decode(
+                    $token,
+                    $tokenObj->getToken(),
+                    (array) $this->options["algorithm"]
+                );
+
+                return (array) $decoded;
             }else{
                 $decoded = JWT::decode(
                     $token,

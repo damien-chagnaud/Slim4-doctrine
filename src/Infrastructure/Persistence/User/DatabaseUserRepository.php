@@ -9,7 +9,7 @@ use App\Domain\User\UserNotFoundException;
 use App\Domain\User\UserRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
-
+use function uuid_create;
 
 class DatabaseUserRepository implements UserRepository
 {
@@ -26,10 +26,22 @@ class DatabaseUserRepository implements UserRepository
      /**
      * {@inheritdoc}
      */
-    public function findUserOfId(string $uiid): User
+    public function findUserByUiid(string $uiid): User
     {
         /** @var User $user */
         $user = $this->repository->find((string) $uiid);
+
+        if ($user === null) {
+            throw new UserNotFoundException();
+        }
+
+        return $user;
+    }
+
+    public function findUserByName(string $username): User
+    {
+        /** @var User $user */
+        $user = $this->repository->findOneBy(['username' => $username]);
 
         if ($user === null) {
             throw new UserNotFoundException();

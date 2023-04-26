@@ -1,8 +1,9 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
-namespace App\Domain\Token;
+namespace App\Application\Middleware\JwtAuthentication;
+
 
 use JsonSerializable;
 

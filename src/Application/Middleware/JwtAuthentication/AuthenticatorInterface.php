@@ -33,10 +33,12 @@ SOFTWARE.
 
 namespace App\Application\Middleware\JwtAuthentication;
 
+use App\Application\Middleware\JwtAuthentication\Token;
+
 interface AuthenticatorInterface
 {
     /**
      * @param string[] $arguments
      */
-    public function __invoke(array $arguments): bool;
+    public function __invoke(array $arguments): Token;
 }
