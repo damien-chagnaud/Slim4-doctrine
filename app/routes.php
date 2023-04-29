@@ -17,9 +17,9 @@ use Monolog\Logger;
 use Monolog\Processor\UidProcessor;
 use Slim\App;
 use Slim\Interfaces\RouteCollectorProxyInterface as Group;
+use Tuupola\Middleware\HttpBasicAuthentication;
 use Tuupola\Middleware\HttpBasicAuthentication\PdoAuthenticator;
-use App\Application\Middleware\JwtAuthentication\PdoGetUserToken;
-use App\Application\Middleware\JwtAuthentication;
+use App\Application\Middleware\JwtMiddleware;
 
 
 //Tuupola\Middleware\JwtAuthentication
@@ -46,7 +46,7 @@ return function (App $app) {
         return $response;
     });
 
-    $app->get('/token', GenerateTokenAction::class)->add(new Tuupola\Middleware\HttpBasicAuthentication([
+    $app->get('/token', GenerateTokenAction::class)->add(new HttpBasicAuthentication([
         "realm" => "Protected",
         "before" => function ($request, $arguments) {
             return $request->withAttribute("user", $arguments["user"]);
@@ -68,18 +68,18 @@ return function (App $app) {
         $group->post('/new', NewTamponAction::class);
         $group->post('/delete', ListTamponAction::class);
         $group->post('/stock', ListTamponAction::class);
-    })->add(new  JwtAuthentication([
+    })->add(new  JwtMiddleware([
         "logger" => $logger,
         "attribute" => "token",
-        "authenticator" => new PdoGetUserToken([
-            "pdo" => $pdo,
-            "table" => "users",
-            "user" => "username",
-            "hash" => "password"
-        ]),
+        "pdo" => $pdo,
+        "utable" => "users",
+        "ttable" => "tokens",
+        "user" => "username",
         "error" =>  function ($response, $arguments) {
+            
             $data["status"] = "error";
             $data["message"] = $arguments["message"];
+            $data["code"] = $arguments["code"];
             $response->getBody()->write(
                 json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT)
             );
