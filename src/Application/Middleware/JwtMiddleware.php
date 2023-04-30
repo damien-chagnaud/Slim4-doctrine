@@ -15,6 +15,7 @@ use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 use Tuupola\Http\Factory\ResponseFactory;
 
+use App\Domain\User\User;
 use App\Domain\Token\Token;
 
 class JwtMiddleware implements Middleware
@@ -60,6 +61,7 @@ class JwtMiddleware implements Middleware
         "regexp" => "/Bearer\s+(.*)$/i",
         "cookie" => "token",
         "attribute" => "token",
+        "level" => "userlevel",
         "utable" => "users",
         "ttable" => "tokens",
         "username" => "username",
@@ -67,14 +69,13 @@ class JwtMiddleware implements Middleware
         "path" => ["/"],
         "ignore" => [],
         "before" => null,
-        "after" => null,
-        "error" => null
+        "after" => null
     ];
+    
+    private $userLevel = 0;
 
     public function __construct(array $options = [])
     {
-        /* Setup stack for rules */
-        $this->rules = new \SplStack;
 
         /* Store passed in options overwriting any defaults. */
         $this->hydrate($options);
@@ -88,6 +89,7 @@ class JwtMiddleware implements Middleware
     {
         $scheme = $request->getUri()->getScheme();
         $host = $request->getUri()->getHost();
+       
 
         /* If rules say we should not authenticate call next and return. */
         if (false === $this->shouldAuthenticate($request)) {
@@ -120,11 +122,29 @@ class JwtMiddleware implements Middleware
                 throw new RuntimeException("Bad payload",103);
             }
 
+            /* Retrieve user from DB: */
+            $user = $this->getDbUser($userName);
+
+            if(null === $user){ 
+                throw new RuntimeException("User not found",104);
+            }
+
+            $userUIID = $user->getId();
+
+            /*check if level set*/
+            if(isset($this->options["minlevel"])){
+                $minlevel = intval($this->options["minlevel"]);
+                $userlevel = intval($user->getLevel());
+                if($userlevel<$minlevel){
+                    throw new RuntimeException("few level",105);
+                }
+            }
+
             /* Retrieve token from DB: */
-            $dbTokenObj = $this->getDbToken($userName);
+            $dbTokenObj = $this->getDbToken($userUIID);
 
             if(null === $dbTokenObj){ 
-                throw new RuntimeException("User not found",104);
+                throw new RuntimeException("Token not found",106);
             }
 
             /*Token validity test: */
@@ -132,23 +152,23 @@ class JwtMiddleware implements Middleware
             $now = time();
 
             if($expiration < $now ){
-                throw new RuntimeException("Token expired",105);
+                throw new RuntimeException("Token expired",107);
             }
 
             $dbTokenHash = $dbTokenObj->getToken();
-
-            $this->log(LogLevel::DEBUG, "Token hash: ".$dbTokenHash);
 
             $decoded = $this->decodeToken($token, $dbTokenHash);
            
         }catch(Exception $exception) {
             $this->log(LogLevel::WARNING, "ERROR:".$exception->getMessage());
             $response = (new ResponseFactory)->createResponse(401);
-            return $this->processError($response, [
-                "message" => $exception->getMessage(),
-                "uri" => (string)$request->getUri(),
-                "code" => $exception->getCode(),
-            ]);
+            $data["status"] = "error";
+            $data["message"] = $exception->getMessage();
+            $data["code"] = $exception->getCode();
+            $response->getBody()->write(
+                json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT)
+            );
+            return $response->withHeader("Content-Type", "application/json");
         }
 
         $params = [
@@ -156,10 +176,10 @@ class JwtMiddleware implements Middleware
             "token" => $token,
         ];
 
-        /* Add decoded token to request as attribute when requested. 
+        /* Add decoded token to request as attribute when requested. */
         if ($this->options["attribute"]) {
             $request = $request->withAttribute($this->options["attribute"], $decoded);
-        }*/
+        }
 
         /* Modify $request before calling next middleware. */
         if (is_callable($this->options["before"])) {
@@ -172,6 +192,8 @@ class JwtMiddleware implements Middleware
         /* Everything ok, call next middleware. */
         $response = $handler->handle($request);
 
+
+
         /* Modify $response before returning. */
         if (is_callable($this->options["after"])) {
             $afterResponse = $this->options["after"]($response, $params);
@@ -180,22 +202,6 @@ class JwtMiddleware implements Middleware
             }
         }
 
-        return $response;
-    }
-
-    /**
-     * Call the error handler if it exists.
-     *
-     * @param mixed[] $arguments
-     */
-    private function processError(Response $response, array $arguments): Response
-    {
-        if (is_callable($this->options["error"])) {
-            $handlerResponse = $this->options["error"]($response, $arguments);
-            if ($handlerResponse instanceof Response) {
-                return $handlerResponse;
-            }
-        }
         return $response;
     }
 
@@ -226,7 +232,7 @@ class JwtMiddleware implements Middleware
         };
 
         /* If everything fails log and throw. */
-        throw new RuntimeException("Token not found.",106);
+        throw new RuntimeException("Token not found.",110);
     }
 
     /**
@@ -244,7 +250,7 @@ class JwtMiddleware implements Middleware
             );
             return (array) $decoded;
         } catch (Exception $exception) {
-            throw new RuntimeException('Bad token',110);
+            throw new RuntimeException('Bad token',120);
         }
     }
 
@@ -252,14 +258,14 @@ class JwtMiddleware implements Middleware
     {
         $tks = \explode('.', $token);
         if (\count($tks) !== 3) {
-            throw new RuntimeException('Wrong number of segments',107);
+            throw new RuntimeException('Wrong number of segments',130);
         }
 
         list($headb64, $bodyb64, $cryptob64) = $tks;
         
         $payloadRaw = JWT::urlsafeB64Decode($bodyb64);
         if (null === ($payload = JWT::jsonDecode($payloadRaw))) {
-            throw new RuntimeException('Invalid claims encoding',108);
+            throw new RuntimeException('Invalid claims encoding',131);
         }
 
         if (\is_array($payload)) {
@@ -273,36 +279,36 @@ class JwtMiddleware implements Middleware
         }*/
 
         if (!isset($payload->Username)) {
-            throw new RuntimeException('No username',109);
+            throw new RuntimeException('No username',132);
         }
 
         return $payload->Username;
     }
 
-
-    private function getDbToken(string $userName):Token
+    private function getDbUser(string $userName):User
     {
         /*Retrive UIID from user name: */
         $usql = $this->userRequest();
         $statement = $this->options["pdo"]->prepare($usql);
         $statement->execute([$userName]);
 
-        $uiid = null;
-
         if ($user = $statement->fetch(\PDO::FETCH_ASSOC)) {
-            $uiid = $user["id"];
+            $userObj = new User($user["id"], $user["username"], $user["password"], $user["firstname"], $user["lastname"], $user["email"], $user["uidkey"], $user["level"]);
+            return $userObj;
         }else{
             return null;
         }
 
+    }
+
+    private function getDbToken(string $userUIID):Token
+    {
         /*Retrive token from UIID: */
         $tsql = $this->tokenRequest();
         $statement = $this->options["pdo"]->prepare($tsql);
-        $statement->execute([$uiid]);
+        $statement->execute([$userUIID]);
 
         if ($token = $statement->fetch(\PDO::FETCH_ASSOC)) {
-
-            if($token["expiration"])
             $tokenObj = new Token($token["id"], $token["uiid"], $token["token"], $token["created"], $token["expiration"]);
             return $tokenObj ;
         }

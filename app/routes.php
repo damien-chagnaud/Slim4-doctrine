@@ -59,32 +59,35 @@ return function (App $app) {
         ]),
     ]));
 
-    $app->group('/tampons', function (Group $group) {
+    $app->group('/users', function (Group $group) {
         $group->get('', ListTamponAction::class);
-    });
-
-    $app->group('/tampons/admin', function (Group $group) {
-        $group->get('', function (Request $request, Response $response) {$response->getBody()->write('Tampons admin pages:'. print_r($request->getAttribute('token'),true));return $response;});
-        $group->post('/new', NewTamponAction::class);
-        $group->post('/delete', ListTamponAction::class);
-        $group->post('/stock', ListTamponAction::class);
+        $group->post('', ListTamponAction::class);
+        $group->put('', ListTamponAction::class);
+        $group->delete('', ListTamponAction::class);
     })->add(new  JwtMiddleware([
+        "minlevel"=> 2,
         "logger" => $logger,
         "attribute" => "token",
         "pdo" => $pdo,
         "utable" => "users",
         "ttable" => "tokens",
-        "user" => "username",
-        "error" =>  function ($response, $arguments) {
-            
-            $data["status"] = "error";
-            $data["message"] = $arguments["message"];
-            $data["code"] = $arguments["code"];
-            $response->getBody()->write(
-                json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT)
-            );
-            return $response->withHeader("Content-Type", "application/json");
-        }
+        "user" => "username"
+    ]));
+
+
+    $app->group('/tampons', function (Group $group) {
+        $group->get('', ListTamponAction::class);
+        $group->post('new', NewTamponAction::class);
+        $group->post('delete', ListTamponAction::class);
+        $group->post('stock', ListTamponAction::class);
+    })->add(new  JwtMiddleware([
+        "minlevel"=> 1,
+        "logger" => $logger,
+        "attribute" => "token",
+        "pdo" => $pdo,
+        "utable" => "users",
+        "ttable" => "tokens",
+        "user" => "username"
     ]));
 
     

@@ -12,6 +12,7 @@
         <field name="lastname" type="string" length="50"/>
         <field name="email" type="string" length="50"/>
         <field name="uidkey" type="string" length="64"/>
+        <field name="level"  type="integer"/>
 
         <options>
             <option name="collate">utf8mb4</option>

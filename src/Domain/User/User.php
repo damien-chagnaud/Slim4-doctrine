@@ -22,7 +22,9 @@ class User implements JsonSerializable
 
     private string $uidkey;
 
-    public function __construct(string $id, string $username, string $password, string $firstname, string $lastname, string $email, string $uidkey)
+    private int $level;
+
+    public function __construct(string $id, string $username, string $password, string $firstname, string $lastname, string $email, string $uidkey, int $level)
     {
         $this->id = $id;
         $this->username = strtolower($username);
@@ -31,6 +33,7 @@ class User implements JsonSerializable
         $this->lastname = ucfirst($lastname);
         $this->email = $email;
         $this->uidkey = strtolower($uidkey);
+        $this->level = $level;
     }
 
     public function getId(): string
@@ -68,6 +71,11 @@ class User implements JsonSerializable
         return $this->uidkey;
     }
 
+    public function getLevel(): int
+    {
+        return $this->level;
+    }
+
     public function setUidkey(string $uidkey): string
     {
         return $this->uidkey = $uidkey;
@@ -84,6 +92,7 @@ class User implements JsonSerializable
             'lastname' => $this->lastname,
             'email' => $this->email,
             'uidkey' => $this->uidkey,
+            'level' => $this->level,
         ];
     }
 }

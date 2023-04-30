@@ -19,6 +19,7 @@ abstract class UserAction extends Action
     {
         parent::__construct($logger);
         $this->userRepository = $userRepository;
-        $this->tokenRepository= $tokenRepository;
+        $this->tokenRepository = $tokenRepository;
     }
+
 }
