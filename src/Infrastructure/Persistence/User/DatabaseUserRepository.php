@@ -26,6 +26,14 @@ class DatabaseUserRepository implements UserRepository
      /**
      * {@inheritdoc}
      */
+    public function findAll(): array
+    {
+        return $this->repository->findAll();
+    }
+
+     /**
+     * {@inheritdoc}
+     */
     public function findUserByUiid(string $uiid): User
     {
         /** @var User $user */
@@ -48,6 +56,19 @@ class DatabaseUserRepository implements UserRepository
         }
 
         return $user;
+    }
+    
+    public function update(User $user): void
+    {
+        $this->entity_manager->persist($user);
+        $this->entity_manager->flush();
+
+    }
+
+    public function delete(User $user): void
+    {
+        $this->entity_manager->remove($user);
+        $this->entity_manager->flush();
     }
 
 }

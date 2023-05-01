@@ -2,17 +2,16 @@
 
 declare(strict_types=1);
 
-namespace App\Application\Actions\User;
+namespace App\Application\Actions\Me;
 
 use App\Domain\User\UserRepository;
 use Psr\Http\Message\ResponseInterface as Response;
 
 use App\Domain\User\User;
-use function uuid_create;
 use Psr\Log\LoggerInterface;
 
 
-class UpdateUserAction extends UserAction
+class UpdateMeAction extends MeAction
 {
     protected UserRepository $userRepository;
     protected LoggerInterface $logger;
@@ -24,6 +23,8 @@ class UpdateUserAction extends UserAction
     {
         $respdata = [];
         $data = (array) $this->request->getParsedBody();
+
+        $header = $request->getHeaderLine($this->options["header"]);
 
         Assert::lazy()
         ->that($data)
@@ -50,11 +51,9 @@ class UpdateUserAction extends UserAction
         if(key_exists('level',$data))$user->setLevel(intval($data['level']));
 
         $this->userRepository->update($user);
- 
-        return $this->respondWithData( 'user updated', 201);
 
-    
-
+        $respdata['result'] = 'updated';
+        return $this->respondWithData($respdata, 201);
     }
 
 }

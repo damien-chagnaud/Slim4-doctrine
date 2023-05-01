@@ -89,6 +89,7 @@ class JwtMiddleware implements Middleware
     {
         $scheme = $request->getUri()->getScheme();
         $host = $request->getUri()->getHost();
+        $userUIID = "";
        
 
         /* If rules say we should not authenticate call next and return. */
@@ -174,6 +175,7 @@ class JwtMiddleware implements Middleware
         $params = [
             "decoded" => $decoded,
             "token" => $token,
+            "UIID" => $userUIID,
         ];
 
         /* Add decoded token to request as attribute when requested. */

@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 #Users:
 use App\Application\Actions\User\GenerateTokenAction;
+use App\Application\Actions\User\ListUserAction;
+use App\Application\Actions\User\NewUserAction;
+use App\Application\Actions\User\UpdateUserAction;
+use App\Application\Actions\User\DeleteUserAction;
 
 #Tampons:
 use App\Application\Actions\Tampon\ListTamponAction;
@@ -46,6 +50,7 @@ return function (App $app) {
         return $response;
     });
 
+    // TOKKEN:
     $app->get('/token', GenerateTokenAction::class)->add(new HttpBasicAuthentication([
         "realm" => "Protected",
         "before" => function ($request, $arguments) {
@@ -59,11 +64,31 @@ return function (App $app) {
         ]),
     ]));
 
+    //ME:
+    $app->group('/me', function (Group $group) {
+        $group->get('', InfosMeAction::class);
+        $group->put('', UpdateMeAction::class);
+    })->add(new  JwtMiddleware([
+        "minlevel"=> 1,
+        "logger" => $logger,
+        "attribute" => "token",
+        "pdo" => $pdo,
+        "utable" => "users",
+        "ttable" => "tokens",
+        "user" => "username",
+        "after" => function($request, $arguments){
+            if(isset($arguments['UIID']))$request = $request->withAttribute('uiid', $arguments['UIID']);
+            return $request;
+        }
+    ]));
+
+
+    // USERS:
     $app->group('/users', function (Group $group) {
-        $group->get('', ListTamponAction::class);
-        $group->post('', ListTamponAction::class);
-        $group->put('', ListTamponAction::class);
-        $group->delete('', ListTamponAction::class);
+        $group->get('', ListUserAction::class);
+        $group->post('', NewUserAction::class);
+        $group->put('', UpdateUserAction::class);
+        $group->delete('', DeleteUserAction::class);
     })->add(new  JwtMiddleware([
         "minlevel"=> 2,
         "logger" => $logger,
@@ -74,7 +99,7 @@ return function (App $app) {
         "user" => "username"
     ]));
 
-
+    // TAMPONS:
     $app->group('/tampons', function (Group $group) {
         $group->get('', ListTamponAction::class);
         $group->post('new', NewTamponAction::class);
